@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valaso | Premium Kahve</title>
+  <meta name="description" content="Valaso premium kahve koleksiyonu, Barbaros günlük tüketime uygun dengeli seri ve Hotasco Kahve üretim gücü." />
+  <style>
+    :root{
+      --bg:#f6f1ea;
+      --text:#1f1a17;
+      --muted:#6f625a;
+      --line:#ddd1c4;
+      --coffee:#5a2d1f;
+      --coffee-dark:#2d1710;
+      --sand:#d7b38a;
+      --navy:#14263a;
+      --stone:#f0e7dc;
+      --white:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(1180px, calc(100% - 48px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(246,241,234,.88);
+      border-bottom:1px solid rgba(31,26,23,.08);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:700;
+      letter-spacing:.08em;
+    }
+
+    .brand-mark{
+      width:34px;height:34px;position:relative;flex:0 0 34px;
+    }
+    .brand-mark:before,
+    .brand-mark:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-top:3px solid #d56d2b;
+      border-right:3px solid #d56d2b;
+      transform:skewX(-10deg) rotate(45deg);
+      border-radius:2px;
+    }
+    .brand-mark:after{
+      inset:7px;
+    }
+
+    .brand-text small{
+      display:block;
+      font-size:10px;
+      font-weight:600;
+      color:var(--muted);
+      letter-spacing:.28em;
+      margin-top:2px;
+    }
+
+    .menu{
+      display:flex;
+      gap:28px;
+      flex-wrap:wrap;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .menu a:hover{color:var(--text)}
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border:1px solid var(--text);
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    .cta:hover{
+      background:var(--text);
+      color:var(--white);
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at 18% 18%, rgba(214,109,43,.18), transparent 25%),
+        linear-gradient(120deg, #3a1e15 0%, #5a2d1f 38%, #2a140e 100%);
+      color:var(--white);
+      overflow:hidden;
+    }
+
+    .hero-inner{
+      min-height:88vh;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:56px;
+      align-items:center;
+      padding:64px 0 72px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      opacity:.8;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(42px, 7vw, 78px);
+      line-height:.97;
+      margin:0 0 18px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      max-width:620px;
+      font-size:18px;
+      color:rgba(255,255,255,.84);
+      margin:0 0 28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:24px;
+    }
+
+    .cta-light{
+      border-color:rgba(255,255,255,.45);
+      color:var(--white);
+    }
+
+    .cta-light:hover{
+      background:var(--white);
+      color:var(--coffee-dark);
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 20px 60px rgba(0,0,0,.18);
+    }
+
+    .hero-card h3{
+      margin:0 0 16px;
+      font-size:18px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .mini{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:16px;
+      min-height:120px;
+    }
+
+    .mini strong{
+      display:block;
+      font-size:18px;
+      margin-bottom:8px;
+    }
+
+    .mini span{
+      color:rgba(255,255,255,.74);
+      font-size:14px;
+    }
+
+    section{
+      padding:86px 0;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:36px;
+      align-items:end;
+      margin-bottom:34px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:clamp(28px, 4vw, 44px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .about{
+      background:var(--white);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:42px;
+      align-items:start;
+    }
+
+    .about-copy p{
+      margin:0 0 16px;
+      color:#3d332e;
+      font-size:17px;
+    }
+
+    .stats{
+      display:grid;
+      gap:14px;
+    }
+
+    .stat{
+      background:var(--stone);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:22px;
+    }
+
+    .stat b{
+      display:block;
+      font-size:30px;
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      color:var(--muted);
+    }
+
+    .brands{
+      background:linear-gradient(180deg, #f6f1ea 0%, #efe3d2 100%);
+    }
+
+    .brand-panels{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .panel{
+      border-radius:30px;
+      padding:32px;
+      min-height:360px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .panel h3{
+      margin:0 0 10px;
+      font-size:32px;
+      letter-spacing:-.03em;
+    }
+
+    .panel p{
+      margin:0 0 18px;
+      max-width:480px;
+      font-size:16px;
+    }
+
+    .panel ul{
+      list-style:none;
+      padding:0;margin:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .panel li{
+      padding:11px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.38);
+      backdrop-filter: blur(5px);
+      font-size:14px;
+    }
+
+    .valaso{
+      color:var(--white);
+      background:
+        linear-gradient(150deg, rgba(20,38,58,.95), rgba(20,38,58,.78)),
+        radial-gradient(circle at 80% 20%, rgba(255,196,126,.2), transparent 30%);
+    }
+
+    .barbaros{
+      color:#20150f;
+      background:
+        linear-gradient(150deg, rgba(215,179,138,.95), rgba(241,225,204,.95));
+    }
+
+    .services{
+      background:var(--white);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--bg);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:24px;
+    }
+
+    .card h4{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .products{
+      background:linear-gradient(180deg, #f8f3ed 0%, #efe8df 100%);
+    }
+
+    .product-groups{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .group{
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:26px;
+    }
+
+    .group h3{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+
+    .group .tag{
+      display:inline-block;
+      margin-bottom:16px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+    }
+
+    .group ul{
+      margin:0;
+      padding-left:18px;
+      color:#3d332e;
+      display:grid;
+      gap:8px;
+    }
+
+    .process{
+      background:var(--white);
+      border-top:1px solid var(--line);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:18px;
+      counter-reset: step;
+    }
+
+    .step{
+      padding:22px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:#faf7f2;
+      position:relative;
+    }
+
+    .step:before{
+      counter-increment: step;
+      content: "0" counter(step);
+      display:block;
+      font-weight:700;
+      color:#b18660;
+      margin-bottom:14px;
+      letter-spacing:.08em;
+    }
+
+    .step h4{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .contact{
+      background:linear-gradient(135deg, #2a140e 0%, #5a2d1f 60%, #73442c 100%);
+      color:var(--white);
+    }
+
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .contact-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      padding:26px;
+    }
+
+    .contact-card h3{
+      margin:0 0 16px;
+      font-size:22px;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:12px;
+      color:rgba(255,255,255,.86);
+    }
+
+    .note{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:14px;
+    }
+
+    footer{
+      padding:24px 0 36px;
+      background:#1e100b;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+    }
+
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1024px){
+      .hero-inner,
+      .two-col,
+      .section-head,
+      .contact-wrap{
+        grid-template-columns:1fr;
+      }
+      .cards,
+      .product-groups,
+      .steps{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px){
+      .container{width:min(100% - 28px, 1180px)}
+      .nav{min-height:72px}
+      .menu{display:none}
+      .hero-inner{min-height:auto;padding:52px 0 54px;gap:28px}
+      .hero p{font-size:16px}
+      .hero-grid,
+      .brand-panels,
+      .cards,
+      .product-groups,
+      .steps{
+        grid-template-columns:1fr;
+      }
+      section{padding:64px 0}
+      .panel{min-height:auto}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <span class="brand-mark"></span>
+        <span class="brand-text">
+          VALASO
+          <small>PREMIUM COFFEE</small>
+        </span>
+      </a>
+
+      <nav class="menu">
+        <a href="#about">Hakkımızda</a>
+        <a href="#brands">Markalar</a>
+        <a href="#services">Ne Yapıyoruz</a>
+        <a href="#products">Ürünler</a>
+        <a href="#process">Çalışma Şeklimiz</a>
+        <a href="#contact">İletişim</a>
+      </nav>
+
+      <a class="cta" href="#contact">Bize Ulaşın</a>
+    </div>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow">Valaso.com.tr için örnek ana sayfa</span>
+        <h1>Premium kahvenin<br>sessiz ama güçlü dili.</h1>
+        <p>
+          Valaso; daha rafine, daha seçkin ve daha premium bir çizgiyi temsil eder.
+          Barbaros ise daha geniş tüketici kitlesine, market kanalına ve günlük tüketime uygun,
+          güçlü ve akılda kalıcı bir segmenttir. Her iki yapı da aynı üretim disiplini ve tedarik gücüyle ilerler.
+        </p>
+
+        <div class="hero-actions">
+          <a class="cta cta-light" href="#brands">Markaları İncele</a>
+          <a class="cta cta-light" href="#products">Ürün Grupları</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Marka Ayrımı</h3>
+        <div class="hero-grid">
+          <div class="mini">
+            <strong>Valaso</strong>
+            <span>Premium segment, nitelikli kahveler, daha rafine sunum ve seçkin algı.</span>
+          </div>
+          <div class="mini">
+            <strong>Barbaros</strong>
+            <span>Market ve daha geniş dağıtım için güçlü, dengeli ve akılda kalıcı seri.</span>
+          </div>
+          <div class="mini">
+            <strong>Hotasco Kahve</strong>
+            <span>Üretim, kavurma, harman geliştirme ve sürdürülebilir tedarik altyapısı.</span>
+          </div>
+          <div class="mini">
+            <strong>B2B yaklaşım</strong>
+            <span>Kafe, horeca, zincir mağaza, private label ve düzenli tedarik odaklı çalışma.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>Hakkımızda</h2>
+        <p>
+          Bu yapı yalnızca ürün satmak için değil; her siparişte tutarlı kalite, güvenilir tedarik
+          ve uzun vadeli iş ortaklığı kurmak için tasarlandı.
+        </p>
+      </div>
+
+      <div class="two-col">
+        <div class="about-copy">
+          <p>
+            “Vâlâ” kelimesinin taşıdığı yüce, değerli ve nitelikli anlam; Valaso markasının temel yaklaşımını oluşturur.
+            Seçkin çekirdekler, kontrollü kavurma ve doğru ürün kurgusuyla daha rafine bir kahve deneyimi sunulur.
+          </p>
+          <p>
+            Üretim ve kavurma tarafında yıllara dayanan bir birikim bulunur. Bu birikim; çekirdek seçiminden
+            harman kararına, ürün standardından lezzet sürekliliğine kadar tüm süreci belirler.
+          </p>
+          <p>
+            Yapının bir yüzünde Valaso yer alır: premium segment, nitelikli kahveler ve daha seçkin bir marka dili.
+            Diğer yüzünde Barbaros vardır: market kanalına, daha geniş damak zevklerine ve günlük tüketime uygun,
+            daha ulaşılabilir ama karakterli bir ürün ailesi.
+          </p>
+          <p>
+            Amaç; tek seferlik satış değil, doğru ürünü doğru kanalda konumlandırarak sürdürülebilir bir marka ve
+            tedarik sistemi kurmaktır.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <b>1999’dan beri</b>
+            <span>Üretim ve kavurma tecrübesi üzerine kurulu bir altyapı.</span>
+          </div>
+          <div class="stat">
+            <b>2 marka yapısı</b>
+            <span>Premium segment için Valaso, daha geniş satış kanalı için Barbaros.</span>
+          </div>
+          <div class="stat">
+            <b>Çoklu ürün portföyü</b>
+            <span>Espresso, filtre, single-origin, Türk kahvesi, toz içecek ve çay grupları.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="brands" id="brands">
+    <div class="container">
+      <div class="section-head">
+        <h2>İki ayrı marka dili,<br>tek kalite anlayışı.</h2>
+        <p>
+          Sitede iki markayı birbirine karıştırmadan anlatmak önemli. Böylece ziyaretçi ilk bakışta
+          hangi markanın hangi satış kanalına hitap ettiğini anlar.
+        </p>
+      </div>
+
+      <div class="brand-panels">
+        <article class="panel valaso">
+          <div>
+            <h3>Valaso</h3>
+            <p>
+              Daha premium, daha rafine ve daha seçkin bir konumlandırma. Nitelikli çekirdekler,
+              özel harmanlar ve butik algıyı destekleyen temiz bir marka sunumu.
+            </p>
+          </div>
+          <ul>
+            <li>Premium segment için ana marka</li>
+            <li>Nitelikli ve single-origin ürünler için güçlü çatı</li>
+            <li>Oteller, seçkin kafeler, gurme satış noktaları için uygun dil</li>
+            <li>Daha sade, şık ve güven veren görsel dünya</li>
+          </ul>
+        </article>
+
+        <article class="panel barbaros">
+          <div>
+            <h3>Barbaros</h3>
+            <p>
+              Daha geniş kitleye hitap eden, market rafında akılda kalan, Anadolu ismi taşıyan
+              daha sıcak ve daha ulaşılabilir marka yüzü.
+            </p>
+          </div>
+          <ul>
+            <li>Market ve yaygın dağıtım için güçlü alternatif</li>
+            <li>Günlük tüketime uygun dengeli ürün ailesi</li>
+            <li>Kolay hatırlanan yerli isim yapısı</li>
+            <li>Ulaşılabilir fiyatlama ile geniş hacim potansiyeli</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Ne yapıyoruz?</h2>
+        <p>
+          Bu alan, firmanın “sadece aracı değil; üretim, geliştirme ve tedarik tarafının merkezinde”
+          olduğunu göstermek için önemli.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h4>Üretim & Kavurma</h4>
+          <p>Kahve ürünlerinde kontrollü kavurma, standardizasyon ve düzenli üretim altyapısı.</p>
+        </div>
+        <div class="card">
+          <h4>Harman Geliştirme</h4>
+          <p>Farklı satış kanalları için tat profili, gövde, asidite ve fiyat dengesi kurulan blend tasarımı.</p>
+        </div>
+        <div class="card">
+          <h4>Private Label</h4>
+          <p>Kendi markasıyla ilerlemek isteyen iş ortakları için ürün, ambalaj ve seri kurgusu desteği.</p>
+        </div>
+        <div class="card">
+          <h4>Sürdürülebilir Tedarik</h4>
+          <p>Lezzet devamlılığı ve aynı kalite standardı için kontrollü çekirdek ve ürün planlaması.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <div class="container">
+      <div class="section-head">
+        <h2>Ürün grupları</h2>
+        <p>
+          Katalogdaki ürün mimarisi sadeleştirilerek web için üç ana blokta anlatıldı.
+          Böylece sayfa daha temiz kalır ve fazla kalabalık görünmez.
+        </p>
+      </div>
+
+      <div class="product-groups">
+        <div class="group">
+          <span class="tag">Klasik / Ticari Kahveler</span>
+          <h3>Günlük ve yüksek hacimli seri</h3>
+          <ul>
+            <li>Espresso Klasik Blend</li>
+            <li>Espresso Special Blend</li>
+            <li>Espresso Barista Blend</li>
+            <li>Filtre Kahve Klasik Blend</li>
+            <li>Colombia Supremo</li>
+            <li>Brasil Natural</li>
+            <li>Türk Kahvesi çeşitleri</li>
+          </ul>
+        </div>
+
+        <div class="group">
+          <span class="tag">Nitelikli / Premium Kahveler</span>
+          <h3>Seçkin çekirdek ve özel seri</h3>
+          <ul>
+            <li>Brasil Doce Diamantina</li>
+            <li>Brasil Mariano Yellow Bourbon</li>
+            <li>Ethiopia Bochesa Grade 1</li>
+            <li>Ethiopia Yirgacheffe Grade 2</li>
+            <li>Colombia La Parada 2 Anaerobic Geisha</li>
+            <li>Costa Rica La Pastora Tarrazu SHB</li>
+            <li>Tanzanya, Kenya, Meksika ve decaf seçenekleri</li>
+          </ul>
+        </div>
+
+        <div class="group">
+          <span class="tag">Toz Ürünler & Çaylar</span>
+          <h3>Tamamlayıcı içecek grupları</h3>
+          <ul>
+            <li>Sıcak Çikolata / Beyaz Sıcak Çikolata</li>
+            <li>Salep</li>
+            <li>Chai Tea Latte</li>
+            <li>Earl Grey, Yeşil Çay, Yaseminli Yeşil Çay</li>
+            <li>Papatya, Adaçayı, Ihlamur</li>
+            <li>Winter Tea, Red Forest, Apple Cinnamon, Kuşburnu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Çalışma şeklimiz</h2>
+        <p>
+          IT tarafı isterse bu bölümü daha sonra ikonlu hale getirebilir. Şimdilik sade ve kurumsal bir akış yeterli.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <h4>İhtiyaç analizi</h4>
+          <p>Kanal, hedef müşteri, fiyat segmenti ve ürün beklentisi birlikte netleştirilir.</p>
+        </div>
+        <div class="step">
+          <h4>Ürün seçimi</h4>
+          <p>Valaso veya Barbaros çatısı altında doğru seri, doğru ambalaj ve doğru tat profili belirlenir.</p>
+        </div>
+        <div class="step">
+          <h4>Numune & revizyon</h4>
+          <p>Gerekirse tadım, numune ve ürün revizyonu ile ticari olarak en uygun form bulunur.</p>
+        </div>
+        <div class="step">
+          <h4>Düzenli tedarik</h4>
+          <p>Tek seferlik değil, sürdürülebilir ve düzenli iş akışı hedeflenir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:24px;">
+        <h2 style="color:#fff;">İletişim</h2>
+        <p style="color:rgba(255,255,255,.76);">
+          Bu alan IT ekibi tarafından form ile genişletilebilir. Şimdilik temel iletişim bilgileri yeterli.
+        </p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h3>Valaso / Hotasco Kahve</h3>
+          <div class="contact-list">
+            <div>Web: valaso.com.tr</div>
+            <div>E-posta: info@hotasco.com</div>
+            <div>Telefon: +90 216 446 98 86</div>
+            <div>Mobil: +90 553 488 56 56</div>
+            <div>Adres: 19 Mayıs Mah. Atatürk Cad. Eriş Sitesi B Blok No:66 D:8 Kadıköy / İstanbul</div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>IT notu</h3>
+          <div class="contact-list">
+            <div>Bu dosya tek parça örnek ana sayfa olarak hazırlandı.</div>
+            <div>Logolar gerçek SVG/PNG ile değiştirilebilir.</div>
+            <div>Ürün kartları ayrı sayfalara bölünebilir.</div>
+            <div>İstenirse İngilizce versiyon da aynı iskelet üzerinden hazırlanabilir.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© 2026 Valaso. Tüm hakları saklıdır.</div>
+      <div>Örnek site tasarımı — IT ekibine yönlendirme amacıyla hazırlanmıştır.</div>
+    </div>
+  </footer>
+</body>
+</html>
