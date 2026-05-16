@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valaso | HOTASCO Kahve</title>
+  <style>
+    :root{
+      --cream:#f6efe4;
+      --paper:#fffaf2;
+      --navy:#142642;
+      --brown:#4b2115;
+      --gold:#c79655;
+      --muted:#75675c;
+      --line:rgba(75,33,21,.14);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        linear-gradient(rgba(255,250,242,.86), rgba(246,239,228,.90)),
+        url("assets/coffee-bg.jpg") center/cover no-repeat;
+      color:var(--brown);
+      overflow:hidden;
+    }
+    .page{
+      height:100vh;
+      width:100%;
+      padding:34px 48px 28px;
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+    }
+    .top{text-align:center;flex:0 0 auto;}
+    .eyebrow{
+      color:var(--gold);
+      letter-spacing:4px;
+      font-size:13px;
+      font-weight:700;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    h1{
+      font-size:clamp(30px,4.2vw,64px);
+      line-height:.95;
+      letter-spacing:-2px;
+      color:var(--brown);
+      font-weight:800;
+    }
+    .subtitle{
+      margin:14px auto 0;
+      max-width:850px;
+      color:var(--muted);
+      font-size:clamp(14px,1.2vw,18px);
+      line-height:1.45;
+    }
+    .cards{
+      flex:1 1 auto;
+      min-height:0;
+      display:grid;
+      grid-template-columns:1fr 1.12fr 1fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .card{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:26px 26px 24px;
+      background:rgba(255,250,242,.78);
+      box-shadow:0 22px 70px rgba(75,33,21,.10);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:0;
+    }
+    .card:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(145deg, rgba(255,255,255,.64), transparent 58%);
+      pointer-events:none;
+    }
+    .card>*{position:relative;z-index:1}
+    .hotasco{background:linear-gradient(160deg, rgba(20,38,66,.94), rgba(31,54,86,.91));color:white}
+    .hotasco .desc,.hotasco .meta{color:rgba(255,255,255,.76)}
+    .barbaros{background:linear-gradient(160deg, rgba(255,250,242,.86), rgba(238,218,194,.82))}
+    .valaso{
+      transform:scale(1.035);
+      background:
+        linear-gradient(160deg, rgba(255,250,242,.88), rgba(246,239,228,.74)),
+        radial-gradient(circle at 50% 86%, rgba(20,38,66,.16), transparent 38%);
+      border-color:rgba(199,150,85,.36);
+    }
+    .logoWrap{height:88px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+    .logoWrap img{max-width:88%;max-height:84px;object-fit:contain}
+    .hotasco .logoWrap img{max-width:96%}
+    .brandType{
+      text-align:center;
+      font-size:13px;
+      letter-spacing:3px;
+      color:var(--gold);
+      text-transform:uppercase;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+    .title{
+      font-size:clamp(24px,2vw,34px);
+      line-height:1.05;
+      text-align:center;
+      font-weight:800;
+      color:inherit;
+      margin-bottom:14px;
+    }
+    .desc{
+      text-align:center;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+      max-width:350px;
+      margin:0 auto;
+    }
+    .meta{
+      margin-top:16px;
+      padding-top:16px;
+      border-top:1px solid rgba(117,103,92,.18);
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      text-align:center;
+    }
+    .hotasco .meta{border-top-color:rgba(255,255,255,.18)}
+
+    /* Valaso kartındaki 3 ambalaj görseli */
+    .valasoProducts{
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      gap:8px;
+      margin:16px auto 4px;
+      width:100%;
+    }
+    .valasoProducts img{
+      width:31%;
+      max-height:230px;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 22px rgba(20,38,66,.20));
+    }
+
+    /* Hotasco ve Barbaros kart görselleri */
+    .cardImage{
+      width:82%;
+      max-height:180px;
+      object-fit:cover;
+      align-self:center;
+      margin:18px auto 0;
+      display:block;
+      border-radius:22px;
+      filter:drop-shadow(0 18px 24px rgba(0,0,0,.18));
+    }
+
+    .bottom{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:22px;
+      color:var(--muted);
+      font-size:14px;
+      flex-wrap:wrap;
+    }
+    .bottom b{color:var(--brown)}
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,250,242,.65);
+      border-radius:999px;
+      padding:10px 16px;
+      backdrop-filter:blur(8px);
+    }
+    @media(max-width:900px){
+      body{overflow:auto}
+      .page{height:auto;min-height:100vh;padding:26px 18px}
+      .cards{grid-template-columns:1fr;gap:16px}
+      .valaso{transform:none;order:-1}
+      .card{min-height:330px;border-radius:26px}
+      .valasoProducts img{max-height:190px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="top">
+      <div class="eyebrow">Website hazırlanıyor</div>
+    </section>
+
+    <section class="cards">
+      <article class="card hotasco">
+        <div>
+          <div class="logoWrap"><img src="assets/hotasco-kahve-logo.png" alt="Hotasco Kahve"></div>
+          <div class="brandType">Global Tedarik</div>
+          <p class="desc">Brezilya, Kolombiya, Etiyopya, Uganda, Hindistan, Kosta Rika ve farklı originlerden yeşil çekirdek ithalatı.</p>
+          <img class="cardImage" src="assets/hotasco-green-beans.jpg" alt="Yeşil çekirdek kahve tedariği">
+        </div>
+        <div class="meta">Yeşil çekirdek · Günlük 2.5 ton kavurma & paketleme · Toptan tedarik</div>
+      </article>
+
+      <article class="card valaso">
+        <div>
+          <div class="logoWrap"><img src="assets/valaso-logo.png" alt="Valaso"></div>
+          <div class="brandType">Premium Ürünler</div>
+          <p class="desc">Nitelikli çekirdekler, rafine harmanlar ve güçlü ambalaj dili. HORECA, ofis ve premium perakende kanalı için.</p>
+
+          <div class="valasoProducts">
+            <img src="assets/valaso-special-blend.png" alt="Valaso Special Blend">
+            <img src="assets/valaso-classic-blend.png" alt="Valaso Classic Blend">
+            <img src="assets/valaso-filter-coffee-blend.png" alt="Valaso Filter Coffee Blend">
+          </div>
+        </div>
+        <div class="meta">Espresso · Filtre kahve · Single origin · Türk kahvesi · Premium blend</div>
+      </article>
+
+      <article class="card barbaros">
+        <div>
+          <div class="logoWrap"><img src="assets/barbaros-logo.png" alt="Barbaros"></div>
+          <div class="brandType">Ulaşılabilir Lezzet</div>
+          <p class="desc">Dengeli lezzet ve ulaşılabilir fiyat odağı. Market, toptancı, bayi ve yüksek hacimli ticari kanal için.</p>
+          <img class="cardImage" src="assets/barbaros-espresso.jpg" alt="Barbaros kahve">
+        </div>
+        <div class="meta">Fiyat/performans · Market kanalı · Toptancı ve bayi yapısı</div>
+      </article>
+    </section>
+
+    <section class="bottom">
+      <span class="pill"><b>valaso.com.tr</b></span>
+      <span class="pill">info@hotasco.com</span>
+      <span class="pill">+90 553 488 56 56</span>
+    </section>
+  </main>
+</body>
+</html>
